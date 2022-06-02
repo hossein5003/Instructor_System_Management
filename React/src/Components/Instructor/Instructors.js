@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import Header from "./Header";
-import DataTable from "./DataTable";
-import * as actions from "../actions/instructor";
+import Header from "../CoreComponents/Header";
+import DataTable from "../CoreComponents/DataTable";
+import * as actions from "../../actions/instructor";
 import {connect} from "react-redux";
 
 const Instructors = ({...props}) => {

@@ -28,18 +28,15 @@ namespace InstructorsSystemManagement.Controllers
         {
             var department = departmentDto.AsDepartment();
 
-            if (_departmentRepository.Get(department.Name) != null)
-                return BadRequest();
-
             _departmentRepository.Add(department);
 
             return CreatedAtAction(nameof(GetDepartment),new {id=department.Name}, department);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Department> GetDepartment(string name)
+        public ActionResult<Department> GetDepartment(Guid id)
         {
-            var department = _departmentRepository.Get(name);
+            var department = _departmentRepository.Get(id);
 
             if (department == null)
                 return NotFound();
@@ -48,9 +45,9 @@ namespace InstructorsSystemManagement.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(string name)
+        public IActionResult Delete(Guid id)
         {
-            var department = _departmentRepository.Get(name);
+            var department = _departmentRepository.Get(id);
 
             if (department == null)
                 return NotFound();
@@ -60,15 +57,15 @@ namespace InstructorsSystemManagement.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string name, UpdatedDepartmentDto departmentDto)
+        public IActionResult Update(Guid id, UpdatedDepartmentDto departmentDto)
         {
-            var department = _departmentRepository.Get(name);
+            var department = _departmentRepository.Get(id);
 
             if (department == null)
                 return NotFound();
 
 
-            _departmentRepository.Update(departmentDto.AsDepartment());
+            _departmentRepository.Update(departmentDto.AsDepartment(id));
             return NoContent();
         }
     }

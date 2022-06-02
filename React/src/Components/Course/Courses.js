@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import Header from "./Header";
-import DataTable from "./DataTable";
+import Header from "../CoreComponents/Header";
+import DataTable from "../CoreComponents/DataTable";
 import {connect} from "react-redux";
-import * as actions from "../actions/course";
+import * as actions from "../../actions/course";
 
 const Courses=({...props})=>{
     useEffect(() => {

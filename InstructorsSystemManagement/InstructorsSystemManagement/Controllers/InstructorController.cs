@@ -20,8 +20,13 @@ namespace InstructorsSystemManagement.Controllers
         [HttpGet]
         public IEnumerable<Instructor> GetAll()
         {
-            var x = _instructorRepository.GetAll();
-            return x;
+            return _instructorRepository.GetAll();
+        }
+
+        [HttpGet("by_name/{deptName}")]
+        public IEnumerable<Instructor> GetInstructorByDeptName(string deptName)
+        {
+            return _instructorRepository.GetAll(x=>x.DeptName == deptName);
         }
 
         [HttpPost]
@@ -60,15 +65,16 @@ namespace InstructorsSystemManagement.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id , UpdatedInstructorDto instructorDto)
+        public IActionResult Update(Guid id , UpdatedInstructorDto newInstructorDto)
         {
-            var instructor = _instructorRepository.Get(id);
 
-            if (instructor == null)
-                return NotFound();
+            var newCourses = newInstructorDto.courses;
+            var newInstructor = newInstructorDto.AsInstructor(id);
 
-            
-            _instructorRepository.Update(instructorDto.AsInstructor(id));
+            _instructorRepository.Update(newInstructor);
+
+           _instructorRepository.AttachCourse(newCourses, newInstructor);
+
             return NoContent();
         }
     }

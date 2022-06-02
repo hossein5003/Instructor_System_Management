@@ -9,11 +9,9 @@ import {useEffect, useState} from "react";
 export default function SimpleAccordion({title, additionalInformation, data}) {
     const [state, setState] = useState([]);
 
-
     useEffect(() => {
         setState(data)
     }, data)
-
 
     const returnEachCourse = (record) => {
         return (
@@ -35,6 +33,7 @@ export default function SimpleAccordion({title, additionalInformation, data}) {
             </Accordion>
         )
     }
+
     return (
         <div>
             {

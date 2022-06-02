@@ -9,7 +9,6 @@ namespace InstructorsSystemManagement.DataAccess.Repository.IRepository
 {
     public interface IDepartmentRepository : IRepository<Department>
     {
-        Department Get(string name);
         void Update(Department department); 
     }
 }

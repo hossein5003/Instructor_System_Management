@@ -17,9 +17,9 @@ namespace InstructorsSystemManagement.DataAccess.Repository
             _db=db;
         }
 
-        public Department Get(string name)
+        public Department Get(Guid id)
         {
-            return _db.Departments.Where(x => x.Name == name).FirstOrDefault();
+            return _db.Departments.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void Update(Department department)

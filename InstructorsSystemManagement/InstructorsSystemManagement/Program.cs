@@ -1,6 +1,7 @@
 using InstructorsSystemManagement.DataAccess;
 using InstructorsSystemManagement.DataAccess.Repository;
 using InstructorsSystemManagement.DataAccess.Repository.IRepository;
+using InstructorsSystemManagement.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IInstructorRepository, InstructorRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -27,6 +30,7 @@ var app = builder.Build();
 
 app.UseCors(options =>
 options.WithOrigins("http://localhost:3000")
+.AllowCredentials()
 .AllowAnyHeader()
 .AllowAnyMethod());
 

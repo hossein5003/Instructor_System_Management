@@ -20,6 +20,7 @@ namespace InstructorsSystemManagement.DataAccess.Repository
 
         public void AttachCourse(IList<Course> courses,Instructor instructor)
         {
+            
             _db.Instructors.Add(instructor);
             _db.Instructors.Attach(instructor);
 
@@ -31,21 +32,25 @@ namespace InstructorsSystemManagement.DataAccess.Repository
                 instructor.Courses.Add(course);
 
             }
+
             _db.SaveChanges();
         }
 
-        public Instructor Get(Guid id)
+        public Instructor? Get(Guid id)
         {
-            return _db.Instructors.Where(x=>x.Id==id).Include(x=>x.Courses).Include(x=>x.Department).FirstOrDefault();
+            var instructor= _db.Instructors.Where(x => x.Id == id).Include(x => x.Courses).Include(x => x.Department).FirstOrDefault();
+            _db.Entry(instructor).State = EntityState.Detached;
+
+            return instructor;
         }
 
         public void Update(Instructor instructor)
         {
-            var instructionFromDb=_db.Instructors.FirstOrDefault(i => i.Id == instructor.Id);
+            var instructionFromDb=_db.Instructors.Include(x=>x.Courses).FirstOrDefault(i => i.Id == instructor.Id);
 
             instructionFromDb.Name = instructor.Name;
             instructionFromDb.DeptName = instructor.DeptName;
-            instructionFromDb.Courses= instructor.Courses;
+            instructionFromDb.Courses.Clear();
 
             _db.SaveChanges();
         }

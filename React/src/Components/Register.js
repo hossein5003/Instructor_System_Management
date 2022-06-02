@@ -5,6 +5,7 @@ import { makeStyles, Paper, TextField } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
+import { FetchPost } from "./CoreComponents/useFetch";
 import axios from "axios";
 
 const StyledPaper = styled(Paper)`
@@ -20,25 +21,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Login = (props) => {
+const Register = () => {
     const classes=useStyles();
     const navigate=useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        axios.post("https://localhost:7220/api/user/login",{name,password}, { withCredentials: true })
+        
+        axios.post("https://localhost:7220/api/user/register",{name,password,email})
         .then(res=> {
-            props.setLogin("logout");
+            console.log(res)
             navigate("/");
         })
+        
     };    
 
     return (
         <>
-            <Header title="LOGIN" />
+            <Header title="REGISTER" />
             <StyledPaper>
                 <form onSubmit={handleSubmit}>
                     <TextField label="Name"
@@ -47,6 +50,14 @@ const Login = (props) => {
                         value={name}
                         onChange={(event) =>
                             setName(event.target.value)}
+                    />
+                    <TextField
+                        label="Email" type="email"
+                        className={classes.field}
+                        required
+                        value={email}
+                        onChange={(event) =>
+                            setEmail(event.target.value)}
                     />
                     <TextField
                         label="Password" type="password"
@@ -69,4 +80,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default Register;

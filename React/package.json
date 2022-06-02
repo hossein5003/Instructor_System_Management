@@ -18,13 +18,16 @@
     "@testing-library/user-event": "^13.5.0",
     "babel-plugin-macros": "^3.1.0",
     "react": "^18.1.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.1.0",
+    "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-toast-notifications": "^2.5.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
+    "swiper": "^8.1.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -56,6 +59,7 @@
     "@mui/x-data-grid-generator": "^5.11.0",
     "axios": "^0.27.2",
     "prop-types": "^15.8.1",
-    "react-redux": "^8.0.1"
+    "react-redux": "^8.0.1",
+    "reactstrap": "^9.0.2"
   }
 }

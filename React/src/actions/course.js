@@ -13,6 +13,17 @@ export const fetchAllApi = () => dispatch => {
         .catch(error => console.log(error))
 }
 
+export const fetchAllByDeptNameApi = (deptName) => dispatch => {
+    courseAPIs().fetchAllByDeptName(deptName)
+        .then(response => {
+            dispatch({
+                type: ACTION_TYPES.FETCH_ALL_COURSE,
+                payload: response.data
+            });
+        })
+        .catch(error => console.log(error))
+}
+
 export const createApi = (data, onSuccess) => dispatch => {
     courseAPIs().create(data)
         .then(response => {

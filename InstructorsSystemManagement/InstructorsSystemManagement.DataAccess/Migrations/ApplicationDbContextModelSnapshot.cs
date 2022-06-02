@@ -67,6 +67,9 @@ namespace InstructorsSystemManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Name");
 
                     b.ToTable("Departments");

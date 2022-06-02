@@ -9,6 +9,7 @@ namespace Models
 {
     public class Department
     {
+        public Guid Id { get; set; }
         [Key]
         public string Name { get; set; }
         [Required]

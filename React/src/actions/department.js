@@ -52,13 +52,13 @@ export const deleteApi = (id, onSuccess) => dispatch => {
         .catch(error => console.log(error))
 }
 
-// export const getByIdApi = (id) => dispatch => {
-//     departmentAPIs().fetchById(id)
-//         .then(response => {
-//             dispatch({
-//                 type: ACTION_TYPES.GET_DEPARTMENT,
-//                 payload: response.data
-//             })
-//         })
-//         .catch(error => console.log(error))
-// }
+export const getByIdApi = (id) => dispatch => {
+    departmentAPIs().fetchById(id)
+        .then(response => {
+            dispatch({
+                type: ACTION_TYPES.GET_DEPARTMENT,
+                payload: response.data
+            })
+        })
+        .catch(error => console.log(error))
+}

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InstructorsSystemManagement.DataAccess.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> where T : class
     {
         protected readonly ApplicationDbContext _context;
         internal DbSet<T> dbSet;

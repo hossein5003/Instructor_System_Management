@@ -13,6 +13,7 @@ import {
 import styled from "styled-components";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
+import { Add } from "@material-ui/icons";
 
 const StyledBody = styled.div`
   margin-top: 30px;
@@ -24,13 +25,13 @@ const DataTable = ({firstColumn, secondColumn, data, type}) => {
     const navigate = useNavigate();
 
     const createButton = (type) =>
-        <Button variant="text" onClick={() => navigate(`/${type}`)}>
-            Create new {type}
+        <Button variant="text" onClick={() => navigate(`/upsert_${type}`)}>
+            <Add/>Create new {type}
         </Button>
 
     const returnRecord = (record) => {
         return (
-            <TableRow component={Link} to={`/${type}/${record.id}`} hover key={record.id}>
+            <TableRow  component={Link} to={`/${type}/${record.id}`} hover key={record.id}>
                 <TableCell align={'center'}>{record[firstColumn]}</TableCell>
                 <TableCell align={'center'}>{record[secondColumn]}</TableCell>
             </TableRow>

@@ -23,6 +23,12 @@ namespace InstructorsSystemManagement.Controllers
             return _courseRepository.GetAll();
         }
 
+        [HttpGet("by_name/{deptName}")]
+        public IEnumerable<Course> GetCourseByDeptName(string deptName)
+        {
+            return _courseRepository.GetAll(x => x.DeptName == deptName);
+        }
+
         [HttpPost]
         public IActionResult Create(CreatedCourseDto courseDto)
         {
@@ -65,7 +71,6 @@ namespace InstructorsSystemManagement.Controllers
 
             if (course == null)
                 return NotFound();
-
 
             _courseRepository.Update(courseDto.AsCourse(id));
             return NoContent();

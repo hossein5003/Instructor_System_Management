@@ -18,5 +18,9 @@ namespace InstructorsSystemManagement
         public record UpdatedDepartmentDto([Required] string Name, [Required] string building);
 
         public record CreatedDepartmentDto([Required] string Name, [Required] string building);
+
+        public record UserDto([Required] string Name, [Required] string password,[Required] string email);
+
+        public record LoginDto([Required] string Name, [Required] string password);
     }
 }

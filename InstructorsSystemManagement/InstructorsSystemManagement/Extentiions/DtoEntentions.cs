@@ -44,15 +44,26 @@ namespace InstructorsSystemManagement.Extentiions
         public static Department AsDepartment(this CreatedDepartmentDto departmentDto)
          => new()
          {
+             Id= Guid.NewGuid(),
              Name = departmentDto.Name,
              Building = departmentDto.building,
          };
 
-        public static Department AsDepartment(this UpdatedDepartmentDto departmentDto)
-            => new()
+        public static Department AsDepartment(this UpdatedDepartmentDto departmentDto , Guid id)
+            => new ()
             {
+                Id= id,
                 Name = departmentDto.Name,
                 Building = departmentDto.building,
+            };
+
+        public static User AsUser(this UserDto userDto)
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Name = userDto.Name,
+                Password = BCrypt.Net.BCrypt.HashPassword(userDto.password),
+                Email= userDto.email,
             };
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstructorsSystemManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220520094632_init")]
+    [Migration("20220523150007_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace InstructorsSystemManagement.DataAccess.Migrations
                     b.Property<string>("Building")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Name");
 

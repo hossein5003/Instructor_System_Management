@@ -10,6 +10,7 @@ namespace InstructorsSystemManagement.DataAccess.Repository
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null);
+        T Get(Guid id);
         void Add(T entity);
         void Remove(string id); 
         void Remove(T entity);

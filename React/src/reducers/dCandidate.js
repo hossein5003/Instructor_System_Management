@@ -5,7 +5,8 @@ const initialState = {
     instructorDetails:{},
     courses:[],
     courseDetails:{},
-    departments:[]
+    departments:[],
+    departmentDetails:{},
 }
 
 export const dCandidate = (state = initialState, action) => {
@@ -25,7 +26,7 @@ export const dCandidate = (state = initialState, action) => {
         case ACTION_TYPES.UPDATE_INSTRUCTOR:
             return {
                 ...state,
-                instructors: state.list.map(x => x.id === action.payload.id ? action.payload : x)
+                instructors: state.instructors.map(x => x.id === action.payload.id ? action.payload : x)
             };
 
         case ACTION_TYPES.DELETE_INSTRUCTOR:
@@ -46,22 +47,28 @@ export const dCandidate = (state = initialState, action) => {
                 departments: [...action.payload]
             };
 
+        case ACTION_TYPES.GET_DEPARTMENT:
+            return {
+                ...state,
+                departmentDetails: {...action.payload}
+            };
+
         case ACTION_TYPES.CREATE_DEPARTMENT:
             return {
                 ...state,
-                departments: [...state.list, action.payload]
+                departments: [...state.departments, action.payload]
             };
 
         case ACTION_TYPES.UPDATE_DEPARTMENT:
             return {
                 ...state,
-                departments: state.list.map(x => x.id === action.payload.id ? action.payload : x)
+                departments: state.departments.map(x => x.id === action.payload.id ? action.payload : x)
             };
 
         case ACTION_TYPES.DELETE_DEPARTMENT:
             return {
                 ...state,
-                departments: state.list.filter(x => x.id === action.payload.id)
+                departments: state.departments.filter(x => x.id !== action.payload)
             };
 
         case ACTION_TYPES.FETCH_ALL_COURSE:
@@ -91,7 +98,7 @@ export const dCandidate = (state = initialState, action) => {
         case ACTION_TYPES.DELETE_COURSE:
             return {
                 ...state,
-                courses: state.list.filter(x => x.id === action.payload.id)
+                courses: state.courses.filter(x => x.id === action.payload.id)
             };
 
         default:
