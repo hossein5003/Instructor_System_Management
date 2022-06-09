@@ -1,4 +1,4 @@
-# Instructor_System_Management
+# Instructor Management System
 Backend  : ASP.Net Core, MySQL, Entity Framework <br>
 Frontend : React JS (Material UI) <br>
 
